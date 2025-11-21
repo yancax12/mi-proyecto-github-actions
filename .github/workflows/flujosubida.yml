@@ -1,51 +1,69 @@
+# (c) Nombre del flujo de trabajo
 name: Integración y entrega continua
 
+# (d) Evento de disparo: push
+# (e) Rama: main
 on:
   push:
     branches:
-      - main   # El flujo se ejecutará cuando se haga un push a la rama 'main'
+      - main
 
 jobs:
+  # (f) Cantidad de jobs: 1
   integracion:
-    runs-on: ubuntu-latest   # El flujo se ejecutará en un sistema operativo Linux (Ubuntu)
+    runs-on: ubuntu-latest     # sistema operativo Linux
 
     steps:
-      # Paso 1: Checkout del código
-      - name: Checkout del código
-        uses: actions/checkout@v2   # Esto descarga el código del repositorio
 
-      # Paso 2: Declarar y definir las variables de entorno
+      # ------------------------------
+      # h) PRIMER STEP – PRESENTACIÓN
+      # ------------------------------
+
+      # g) Declarar variables de entorno (nombres, apellidos, edad)
       - name: Definir variables de entorno
         run: |
           echo "nombres=Jhan Carlos" >> $GITHUB_ENV
-          echo "apellidos=Yangali Huaman" >> $GITHUB_ENV
+          echo "apellidos=Yangali Huamán" >> $GITHUB_ENV
           echo "edad=20" >> $GITHUB_ENV
 
-      # Paso 3: Presentación
       - name: Presentación
         run: |
           echo "Nombre: ${{ env.nombres }}"
           echo "Apellido: ${{ env.apellidos }}"
           echo "Edad: ${{ env.edad }}"
 
-      # Paso 4: Datos Generales
+      # ------------------------------
+      # i) SEGUNDO STEP – DATOS GENERALES
+      # ------------------------------
       - name: Datos Generales
         run: |
           echo "Carrera: Ingeniería de Sistemas"
 
-      # Paso 5: Variables Secretas (no es necesario escribirlas en el archivo de entorno)
-      - name: Variables Secretas
-        run: |
-          # Accedemos directamente a las variables secretas de GitHub
-          echo "user: ${{ secrets.USER }}"
-          echo "password: ${{ secrets.PASSWORD }}"
+      # ------------------------------
+      # j) Declarar variables secretas
+      # (Debes crearlas en Settings > Secrets)
+      # j.1) user
+      # j.2) password
+      # ------------------------------
 
-      # Paso 6: Crear una variable abierta
-      - name: Definir versión del proyecto
+      # k) TERCER STEP – VARIABLES SECRETAS
+      - name: Variables de entorno secretas
+        run: |
+          echo "user: ******"     # sólo mostrará **** por seguridad
+          echo "password: ******"
+          echo "Valor real user: ${{ secrets.USER }}"
+          echo "Valor real password: ${{ secrets.PASSWORD }}"
+
+      # ------------------------------
+      # l) Variable abierta: version = 3.0
+      # ------------------------------
+      - name: Definir variable de versión
         run: |
           echo "version=3.0" >> $GITHUB_ENV
 
-      # Paso 7: Variables Abiertas
-      - name: Variables Abiertas
+      # ------------------------------
+      # ll) CUARTO STEP – VARIABLES ABIERTAS
+      # ------------------------------
+      - name: Variables abiertas
         run: |
-          echo "Versión del Proyecto: ${{ env.version }}"
+          echo "Versión de mi proyecto: ${{ env.version }}"
