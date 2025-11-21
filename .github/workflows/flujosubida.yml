@@ -7,32 +7,35 @@ on:
 
 jobs:
   integracion:
-    runs-on: ubuntu-latest   # El flujo se ejecutará en un sistema operativo Ubuntu
+    runs-on: ubuntu-latest   # El flujo se ejecutará en un sistema operativo Linux (Ubuntu)
 
     steps:
       # Paso 1: Checkout del código
       - name: Checkout del código
         uses: actions/checkout@v2   # Esto descarga el código del repositorio
 
-      # Paso 2: Presentación
+      # Paso 2: Declarar y definir las variables de entorno
+      - name: Definir variables de entorno
+        run: |
+          echo "nombres=Jhan Carlos" >> $GITHUB_ENV
+          echo "apellidos=Yangali Huaman" >> $GITHUB_ENV
+          echo "edad=20" >> $GITHUB_ENV
+
+      # Paso 3: Presentación (imprimir variables de entorno)
       - name: Presentación
         run: |
-          echo "Nombre: ${{ secrets.NOMBRES }}"
-          echo "Apellido: ${{ secrets.APELLIDOS }}"
-          echo "Edad: ${{ secrets.EDAD }}"
+          # Imprime las variables de entorno definidas
+          echo "Nombre: ${{ env.nombres }}"
+          echo "Apellido: ${{ env.apellidos }}"
+          echo "Edad: ${{ env.edad }}"
 
-      # Paso 3: Datos Generales
+      # Paso 4: Datos Generales
       - name: Datos Generales
         run: |
           echo "Carrera: Ingeniería de Sistemas"
 
-      # Paso 4: Variables Secretas
+      # Paso 5: Variables Secretas
       - name: Variables Secretas
         run: |
           echo "user: ${{ secrets.USER }}"
           echo "password: ${{ secrets.PASSWORD }}"
-
-      # Paso 5: Variables abiertas
-      - name: Variables abiertas
-        run: |
-          echo "Versión del proyecto: 3.0"
