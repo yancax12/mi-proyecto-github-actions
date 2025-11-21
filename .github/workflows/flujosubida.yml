@@ -33,24 +33,19 @@ jobs:
         run: |
           echo "Carrera: Ingeniería de Sistemas"
 
-      # Paso 5: Declarar y definir las variables de entorno secretas
-      - name: Definir variables secretas
-        run: |
-          echo "user: ${{ secrets.USER }}" >> $GITHUB_ENV
-          echo "password: ${{ secrets.PASSWORD }}" >> $GITHUB_ENV
-
-      # Paso 6: Variables Secretas
+      # Paso 5: Variables Secretas (no es necesario escribirlas en el archivo de entorno)
       - name: Variables Secretas
         run: |
+          # Accedemos directamente a las variables secretas de GitHub
           echo "user: ${{ secrets.USER }}"
           echo "password: ${{ secrets.PASSWORD }}"
 
-      # Paso 7: Crear una variable abierta
+      # Paso 6: Crear una variable abierta
       - name: Definir versión del proyecto
         run: |
           echo "version=3.0" >> $GITHUB_ENV
 
-      # Paso 8: Variables Abiertas
+      # Paso 7: Variables Abiertas
       - name: Variables Abiertas
         run: |
           echo "Versión del Proyecto: ${{ env.version }}"
