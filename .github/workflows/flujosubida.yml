@@ -1,0 +1,38 @@
+name: Integración y entrega continua
+
+on:
+  push:
+    branches:
+      - main   # El flujo se ejecutará cuando se haga un push a la rama 'main'
+
+jobs:
+  integracion:
+    runs-on: ubuntu-latest   # El flujo se ejecutará en un sistema operativo Ubuntu
+
+    steps:
+      # Paso 1: Checkout del código
+      - name: Checkout del código
+        uses: actions/checkout@v2   # Esto descarga el código del repositorio
+
+      # Paso 2: Presentación
+      - name: Presentación
+        run: |
+          echo "Nombre: ${{ secrets.NOMBRES }}"
+          echo "Apellido: ${{ secrets.APELLIDOS }}"
+          echo "Edad: ${{ secrets.EDAD }}"
+
+      # Paso 3: Datos Generales
+      - name: Datos Generales
+        run: |
+          echo "Carrera: Ingeniería de Sistemas"
+
+      # Paso 4: Variables Secretas
+      - name: Variables Secretas
+        run: |
+          echo "user: ${{ secrets.USER }}"
+          echo "password: ${{ secrets.PASSWORD }}"
+
+      # Paso 5: Variables abiertas
+      - name: Variables abiertas
+        run: |
+          echo "Versión del proyecto: 3.0"
