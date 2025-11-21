@@ -21,10 +21,9 @@ jobs:
           echo "apellidos=Yangali Huaman" >> $GITHUB_ENV
           echo "edad=20" >> $GITHUB_ENV
 
-      # Paso 3: Presentación (imprimir variables de entorno)
+      # Paso 3: Presentación
       - name: Presentación
         run: |
-          # Imprime las variables de entorno definidas
           echo "Nombre: ${{ env.nombres }}"
           echo "Apellido: ${{ env.apellidos }}"
           echo "Edad: ${{ env.edad }}"
@@ -34,8 +33,24 @@ jobs:
         run: |
           echo "Carrera: Ingeniería de Sistemas"
 
-      # Paso 5: Variables Secretas
+      # Paso 5: Declarar y definir las variables de entorno secretas
+      - name: Definir variables secretas
+        run: |
+          echo "user: ${{ secrets.USER }}" >> $GITHUB_ENV
+          echo "password: ${{ secrets.PASSWORD }}" >> $GITHUB_ENV
+
+      # Paso 6: Variables Secretas
       - name: Variables Secretas
         run: |
           echo "user: ${{ secrets.USER }}"
           echo "password: ${{ secrets.PASSWORD }}"
+
+      # Paso 7: Crear una variable abierta
+      - name: Definir versión del proyecto
+        run: |
+          echo "version=3.0" >> $GITHUB_ENV
+
+      # Paso 8: Variables Abiertas
+      - name: Variables Abiertas
+        run: |
+          echo "Versión del Proyecto: ${{ env.version }}"
